@@ -1,0 +1,70 @@
+\begin{textblock}{\mycolwidth}(\rightpos,2.5)
+\LHead{The Theory} \\
+There is a directed graph $G = (V, E)$ and a set of edge labels:
+\begin{multicols}{2}
+In a \emph{functional routing network} the edge labels are
+functions on a semilattice $(S, \oplus, \leq)$, which can be
+\begin{itemize}
+  \item \emph{extensive}, if $\id_S \leq f$,
+  \item \emph{right-inclining}, if $g \leq f \circ g$ for all $g \in F$,
+  \item \emph{left-inclining}, if $f \leq f \circ g$ for all $g \in F$, and
+  \item \emph{distributive}, if $f \circ (g \oplus h) = (f \circ g) \oplus (f \circ h)$
+  for all $g, h \in F$.
+\end{itemize}
+In an \emph{algebraic routing network} the edge labels are elements from a semiring structure $(S, \oplus, \otimes, \leq, \nul, \eins)$, for example a \emph{bounded dioid}:
+\begin{itemize}
+  \item $(S, \oplus, \otimes, \nul, \eins)$ is a semiring
+  \item $\leq$ is the partial order of the semilattice $(S, \oplus)$,
+  \item $\oplus$ is idempotent, i.e.\ $a \oplus a = a$, and
+  \item $\eins \oplus a = a \oplus \eins = \eins$.
+\end{itemize}
+\end{multicols}
+Problem: Find a best paths between two vertices w.r.t.~the partial order $\leq$ of the semilattice given a starting value.
+
+\emph{Profile search}: Find best paths for all starting values.
+
+\textbf{Theorem about profile searches}:
+The profile searches on functional routing networks with
+\emph{extensive, inclining and distributive}
+functions are algebraic routing problems on \emph{bounded dioids}.
+\end{textblock}
+
+\begin{textblock}{\mycolwidth}(\rightpos,9)
+\LHead{Algebraic Abstractions} \\
+\begin{center}
+\begin{tikzpicture}[scale=4]
+\node[] (x) at (0, 0) {$0.43$};
+\node[] (a2) at (-3.5, 0) {$4$};
+\node[] (a1) at (3.5, 0) {$1$};
+\node[] (fx) at (0, -1.5) {$0.7 \leq 0.74 \leq 2$};
+\node[] (fa2) at (-3.5, -1.5) {$7$};
+\node[] (fa1) at (3.5, -1.5) {$2$};
+\draw[->] (x) -- (a2) node[midway, above]
+  {$\alpha^\downarrow(a) = \lfloor 10 a \rfloor$};
+\draw[->] (x) -- (a1) node[midway, above]
+  {$\alpha^\uparrow(a) = \lceil a \rceil$};
+\draw[->] (x) -- (fx) node[midway, right] {$+ 0.31$};
+\draw[->] (a1) -- (fa1) node[midway, left] {$+1$};
+\draw[->] (a2) -- (fa2) node[midway, right] {$+3$};
+\draw[->] (fa1) -- (fx) node[midway, below]
+  {$\gamma^\uparrow(a) = a$};
+\draw[->] (fa2) -- (fx) node[midway, below]
+  {$\gamma^\downarrow(a) = \frac{a}{10}$};
+\end{tikzpicture}
+\end{center}
+\end{textblock}
+
+\begin{textblock}{\mycolwidth}(\rightpos,17.2)
+\LHead{Conclusions and Future Work} \\
+First tests yielded reasonable results, but we just started to implement
+various shortest path algorithms for the state-based routing problem and
+its profile version. Hence runtime and space analyzations are near future
+goals. The model itself is promising, comprising time-dependent routing,
+battery constraints, stochasticity and multi-criteria routing, but the
+running time is an important question to answer soon.
+
+In the long run we aim to extend GreenNav by more sophisticated algorithms
+and services. An egoistic routing algorithm is but the first step towards
+ecological sustainability. Multi-modality and stochasticity are two important
+points to consider.
+\end{textblock}
