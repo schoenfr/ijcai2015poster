@@ -17,40 +17,56 @@ our aim is to find a model unifying some aspects while still
 allowing for most algorithms known for the shortest path problem.
 \end{textblock}
 
-\begin{textblock}{\mycolwidth}(\leftpos,8.25)
-\LHead{Prototype} \\
-The Technische Universit\"at M\"unchen (TUM) developed a prototypic routing service,
-which is further developed at the University of L\"ubeck,
-available at \url{www.isp.uni-luebeck.de/greennav}. It is used
-to evaluate different routing algorithms. You can see a range prediction
-of an electric vehicle.\\[1em]
-\resizebox{5\TPHorizModule}{!}{\includegraphics{greennav.png}}
+\begin{textblock}{\mycolwidth}(\leftpos,10)
+\LHead{Functional Routing}\\
+\large
+\begin{center}
+\begin{tikzpicture}[scale=2.8]
+  \node[vertex] (v0) at (0, 4.7) {$v_0$};
+  \node[vertex] (v1) at (2.5, 4.95) {$v_1$};
+  \node[vertex] (v2) at (5, 4.45) {$v_2$};
+  \node[vertex] (v3) at (7.5, 4.7) {$v_3$};
+  \path[edge] (v0) -- (v1);
+  \path[edge] (v1) -- (v2);
+  \path[edge] (v2) -- (v3);
+  \node[draw,minimum height=5.7cm,minimum width=1.6cm] at (0,2) {};
+  \node[draw,minimum height=5.7cm,minimum width=1.6cm] at (2.5,2) {};
+  \node[draw,minimum height=5.7cm,minimum width=1.6cm] at (5,2) {};
+  \node[draw,minimum height=5.7cm,minimum width=1.6cm] at (7.5,2) {};
+  \node[circle] (s) at (0, 1.5) {$s_0$};
+  \node[circle] (ss) at (2.5, 1.7) {$s_1$};
+  \node[circle] (sss) at (5, 2.2) {$s_2$};
+  \node[circle] (ssss) at (7.5, 2.4) {$s_3$};
+  \path[edge] (s) -- (ss);
+  \path[edge] (ss) -- (sss);
+  \path[edge] (sss) -- (ssss);
+  \node[align=center] (edgelabels) at (-1.7,3.75) {labels are functions};
+  \node[align=center] (init) at (-1.5,2) {initial\\ state};
+  \path[edge, dashed] (init) -- (s);
+  \node[align=center] (final) at (9,2) {final\\ state};
+  \path[edge, dashed] (final) -- (ssss);
+  \node[align=center] (start) at (-1.5,4.7) {start};
+  \path[edge, dashed] (start) -- (v0);
+  \node[align=center] (end) at (9,4.7) {end};
+  \path[edge, dashed] (end) -- (v3);
+  \node (w1) at (1.25, 3.7) {$W(v_0, v_1)$};
+  \node (w2) at (3.75, 3.7) {$W(v_1, v_2)$};
+  \node (w3) at (6.25, 3.7) {$W(v_2, v_3)$};
+  \path[edge, dashed] (1.25,4.5) -- (w1) -- (1.25, 1.8);
+  \path[edge, dashed] (3.75,4.3) -- (w2) -- (3.75, 2.1);
+  \path[edge, dashed] (6.25,4.2) -- (w3) -- (6.25, 2.5);
+\end{tikzpicture}
+\end{center}
 \end{textblock}
 
-\begin{textblock}{\mycolwidth}(\leftpos,14.75)
-\LHead{Definition: State-Based Routing}
-\begin{itemize}
-  \item $G = (V, E)$ is a graph,
-  \item $S$ is a set of states preordered by $\leq_S$,
-  \item $\mathcal S:\ V \to \mathcal P(S)$ describes possible states at each vertex,
-  \item $\mathbb W$ is a set of \emph{monotone} ($x_1 \leq_S x_2 \to f(x_1) \leq_S f(x_2)$)
-  and \emph{extensive} ($x \leq_S f(x)$) weights $S \leadsto S$,
-  \item $\mathcal W':\ E \to \mathbb W$ is a weighting,
-\end{itemize}
-such that
-\begin{itemize}
-  \item $\mathcal W'(x, y)$ is a weight $\mathcal S(x) \to \mathcal S(y)$, and
-  \item the \emph{extension} of $\mathcal W'$ again is $\mathcal W:\ \text{walks} \to \mathbb W$ given by
-  \[\mathcal W(\gamma) = \mathcal W'(v_0, v_1) \circ \ldots \circ \mathcal W'(v_{k-1}, v_k)\]
-  for all walks $\gamma = (v_0, \ldots, v_k), k \geq 0$ (identity for $k = 0$).
-\end{itemize}
-\vspace{0.5em}
-Objective:
-\begin{itemize}
-  \item Given $x, y \in V$ and initial state $s \in \mathcal S(x)$,
-  find at least one corresponding path
-  for each minimal element in $\min(\mathcal W(\text{walks from}\ x\ \text{to}\ y)(s))$
-  (except for equivalence), where
-  \[\min(S) := \{s \in S\ |\ \neg\exists s' \in S:\ s' < s\}.\]
-\end{itemize}
+\begin{textblock}{\mycolwidth}(\leftpos,13.7)
+\LHead{Prototype} \\
+\large
+The Technische Universit\"at M\"unchen (TUM) initiated a prototypic routing service,
+which is further developed at the University of L\"ubeck,
+available at \url{www.isp.uni-luebeck.de/greennav}. It is used
+to provide and evaluate different routing algorithms. The polygon shows the range prediction of an electric vehicle.
+\begin{center}
+\resizebox{5\TPHorizModule}{!}{\includegraphics{greennav.png}}
+\end{center}
 \end{textblock}

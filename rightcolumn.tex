@@ -1,25 +1,27 @@
 \begin{textblock}{\mycolwidth}(\rightpos,2.5)
 \LHead{The Theory} \\
+\large
 There is a directed graph $G = (V, E)$ and a set of edge labels:
 \begin{multicols}{2}
+\normalsize
 In a \emph{functional routing network} the edge labels are
-functions on a semilattice $(S, \oplus, \leq)$, which can be
-\begin{itemize}
+functions $f$ on a semilattice $(S, \oplus, \leq)$, which can be
+\begin{itemize}[itemindent=1cm,labelsep=0.5cm]
   \item \emph{extensive}, if $\id_S \leq f$,
   \item \emph{right-inclining}, if $g \leq f \circ g$ for all $g \in F$,
-  \item \emph{left-inclining}, if $f \leq f \circ g$ for all $g \in F$, and
+  \item \emph{left-inclining}, if $f \leq f \circ g$ for all $g \in F$,
   \item \emph{distributive}, if $f \circ (g \oplus h) = (f \circ g) \oplus (f \circ h)$
   for all $g, h \in F$.
 \end{itemize}
 In an \emph{algebraic routing network} the edge labels are elements from a semiring structure $(S, \oplus, \otimes, \leq, \nul, \eins)$, for example a \emph{bounded dioid}:
-\begin{itemize}
+\begin{itemize}[itemindent=1cm,labelsep=0.5cm]
   \item $(S, \oplus, \otimes, \nul, \eins)$ is a semiring
-  \item $\leq$ is the partial order of the semilattice $(S, \oplus)$,
+  \item $(S, \oplus, \leq)$ is a semilattice,
   \item $\oplus$ is idempotent, i.e.\ $a \oplus a = a$, and
   \item $\eins \oplus a = a \oplus \eins = \eins$.
 \end{itemize}
 \end{multicols}
-Problem: Find a best paths between two vertices w.r.t.~the partial order $\leq$ of the semilattice given a starting value.
+Problem: Given a starting value, find best paths between two vertices with respect to the partial order $\leq$ of the semilattice.
 
 \emph{Profile search}: Find best paths for all starting values.
 
@@ -29,8 +31,14 @@ The profile searches on functional routing networks with
 functions are algebraic routing problems on \emph{bounded dioids}.
 \end{textblock}
 
-\begin{textblock}{\mycolwidth}(\rightpos,9)
+\begin{textblock}{\mycolwidth}(\rightpos,8.2)
 \LHead{Algebraic Abstractions} \\
+\large
+An idea from static analysis of programs \cite{cousot1977}:
+\begin{itemize}[itemindent=2cm,labelsep=1cm]
+  \item Abstraction $\alpha: S \to S'$
+  \item Concretization $\gamma: S' \to S$
+\end{itemize}
 \begin{center}
 \begin{tikzpicture}[scale=4]
 \node[] (x) at (0, 0) {$0.43$};
@@ -52,10 +60,14 @@ functions are algebraic routing problems on \emph{bounded dioids}.
   {$\gamma^\downarrow(a) = \frac{a}{10}$};
 \end{tikzpicture}
 \end{center}
+Requires edge weighting functions to be isotonic: $s \leq t \to f(s) \leq f(t)$ for all $s, t \in S$ (also called \emph{FIFO} or \emph{non-overtaking}-property).
+
+\textbf{Theorem about interval abstractions}: Routing abstractions yield valid lower and upper bounds on functional routing problems with isotonic functions.
 \end{textblock}
 
-\begin{textblock}{\mycolwidth}(\rightpos,17.2)
+\begin{textblock}{\mycolwidth}(\rightpos,15.5)
 \LHead{Conclusions and Future Work} \\
+\large
 First tests yielded reasonable results, but we just started to implement
 various shortest path algorithms for the state-based routing problem and
 its profile version. Hence runtime and space analyzations are near future

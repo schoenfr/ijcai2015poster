@@ -7,6 +7,7 @@
 \usepackage{amsmath,amssymb,amsthm} % Math
 \usepackage{stmaryrd}               % Lightning
 \usepackage{multicol}
+\usepackage{enumitem}
 
 \setlength{\columnsep}{2cm}
 
@@ -47,14 +48,19 @@
 
 % \textblockcolor{yellow}
 
-\newcommand{\mycolwidth}{7.5}
+\newcommand{\mycolwidth}{7.2}
 \newcommand{\leftpos}{0}
-\newcommand{\rightpos}{8}
+\newcommand{\rightpos}{7.8}
 
 \newcommand{\nul}{\textbf{0}}
 \newcommand{\eins}{\textbf{1}}
 \newcommand{\maxs}{\infty}
 \newcommand{\id}{\text{id}}
+
+\newcommand{\isdef}{\coloneqq}
+\newcommand{\R}{\mathbb R}
+\tikzstyle{vertex}=[draw, circle]
+\tikzstyle{edge}=[draw, thick, ->]
 
 \begin{document}
 
@@ -78,7 +84,7 @@
 \color{oceangreen}
 \hspace{1\TPHorizModule}
 Ren\'e Sch\"onfelder (\texttt{schoenfr@isp.uni-luebeck.de})
-\hspace{3ex}and\hspace{3ex}Martin Leucker (\texttt{leucker@isp.uni-luebeck.de}),
+\hspace{3ex}and\hspace{3ex}Martin Leucker (\texttt{leucker@isp.uni-luebeck.de})
 \hfill July 6, 2012 \hspace{1\TPHorizModule}
 }
 \end{textblock}
@@ -94,8 +100,8 @@ Ren\'e Sch\"onfelder (\texttt{schoenfr@isp.uni-luebeck.de})
 \begin{multicols}{3}
 \renewcommand{\refname}{\normalfont\LHead{Related Work}\vspace{-1cm}}
 \nocite{*}
-\bibliographystyle{plain} %plain
-\bibliography{ref}
+\bibliographystyle{apalike}
+\bibliography{ijcai15}
 \end{multicols}
 \end{textblock}
 
